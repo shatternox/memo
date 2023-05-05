@@ -1,3 +1,8 @@
+<?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Credentials: true');
+header('Content-Security-Policy: asdasd unsafe-inline');
+?>
 <style>
     @import url('https://fonts.googleapis.com/css?family=Roboto|K2D');
 

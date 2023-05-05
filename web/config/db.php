@@ -1,7 +1,7 @@
 <?php
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "";
+$dbhost = "db";
+$dbuser = "shatternox";
+$dbpass = "YXgh4IXP^ZBdc&CpRU^^1LSq";
 $dbname = "memo";
 
 // Create connection

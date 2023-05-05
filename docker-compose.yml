@@ -1,0 +1,37 @@
+version: "3.1"
+services:
+  web:
+    build: .
+    ports:
+      - "11111:80"
+    volumes:
+      - ./web:/var/www/html:ro
+    networks:
+        - default
+  
+  db:
+    image: mysql:8.0
+    ports: 
+        - "45612:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+        MYSQL_DATABASE: memo
+        MYSQL_USER: shatternox
+        MYSQL_PASSWORD: YXgh4IXP^ZBdc&CpRU^^1LSq
+        MYSQL_ROOT_PASSWORD: YXgh4IXP^ZBdc&CpRU^^1LSq
+    volumes:
+        - ./dump:/docker-entrypoint-initdb.d
+        - ./conf:/etc/mysql/conf.d
+        - persistent:/var/lib/mysql
+    networks:
+        - default
+
+  admin:
+    build: ./admin
+    ports:
+      - 39981:3000
+    networks:
+        - default
+
+volumes:
+  persistent:

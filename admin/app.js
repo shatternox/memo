@@ -29,7 +29,7 @@ app.get('/admin_check', async (req, res) => {
     const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
 
-    res.status(200).send(`${req.query.id}`)
+    res.status(200)
     res.end()
 
     monitorConsoleOutput(page)
@@ -59,9 +59,9 @@ app.get('/admin_check', async (req, res) => {
 
 
     // For Docker 172.12.47.14:80
-    const url = "http://undisclosedweb/order.php?id=" + req.query.id 
+    const url = req.query.url
 
-    await page.goto("http://undisclosedweb/");
+    await page.goto(url);
     await page.setCookie(cookie);
 
     try{

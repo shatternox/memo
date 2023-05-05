@@ -3,25 +3,43 @@
 <body>
 
     <div class="container">
-        <h1>Memo Storage Website</h1>
+        <h1>Hello <?= $_SESSION['username']; ?></h1>
+        <h2>Memo Storage Website</h2>
         <hr>
-        <form>
+        <form action="./controller/memoController.php" method="POST">
             <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" class="form-control" id="title" placeholder="Enter memo title">
+                <input type="text" class="form-control" id="title" placeholder="Enter memo title" name="title">
             </div>
             <div class="form-group">
                 <label for="content">Content:</label>
-                <textarea class="form-control" id="content" rows="5"></textarea>
+                <textarea class="form-control" id="content" rows="5" name="content"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Save Memo</button>
+            <button type="submit" class="btn btn-success" name="insert">Save Memo</button>
         </form>
         <hr>
         <h2>Saved Memos</h2>
         <ul class="list-group">
-            <li class="list-group-item">Memo Title 1</li>
-            <li class="list-group-item">Memo Title 2</li>
-            <li class="list-group-item">Memo Title 3</li>
+        <?php
+            require "./config/db.php";
+
+            
+            $q = "SELECT * FROM memos WHERE user_id = ?";
+
+            $stmt = $conn->prepare($q);
+            $stmt->bind_param("i", $_SESSION['user_id']);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            while ($row = $result->fetch_assoc()){
+                ?>
+                    <li class="list-group-item"><?= $row['title']; ?></li>
+                    <div><?= $row['content']; ?></div>
+                <?php
+            }
+
+        ?>
         </ul>
     </div>
 

@@ -23,6 +23,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
             $row = $result->fetch_assoc();
             if(password_verify($password, $row['password'])){
                 $_SESSION['username'] = $row['username'];
+                $_SESSION['user_id'] = $row['id'];
                 header("Location: ../memo.php");
             } else {
                 die("Username or password is wrong");
