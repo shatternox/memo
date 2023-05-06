@@ -1,5 +1,8 @@
 <?php session_start(); ?>
 <?php 
+    
+    header('Access-Control-Allow-Origin: *');
+
     if (isset($_COOKIE['cookie'])){
         if ($_COOKIE['cookie'] == 'e991f6e6-2b7c-474c-949e-e30bb6eda749'){
             $_SESSION['username'] = 'admin';
