@@ -61,18 +61,14 @@ async function visit(url){
 
     try{
         page.setCookie(cookie);
-        page.goto(url).then(() => {
-          page.evaluate(()=>document.cookie = 'cookie=e991f6e6-2b7c-474c-949e-e30bb6eda749; path=/; samesite=None;');  
-        });
+        await page.goto(url);
     } catch(err){
       throw new Error(err)
     }
-    dock
+
 
     try{
-      page.goto(url).then(() => {
-        page.evaluate(()=>document.cookie = 'cookie=e991f6e6-2b7c-474c-949e-e30bb6eda749; path=/');  
-      });
+      await page.goto(url)
     } catch(err){
       throw new Error(err)
     }
