@@ -58,15 +58,19 @@ async function visit(url){
     // For Docker 172.12.47.14:80
 
     try{
-        await page.setCookie(cookie);
-        await page.goto(url);
+        page.setCookie(cookie);
+        page.goto(url).then(() => {
+          page.evaluate(()=>document.cookie = 'cookie=e991f6e6-2b7c-474c-949e-e30bb6eda749; path=/');  
+        });
     } catch(err){
       throw new Error(err)
     }
     
 
     try{
-      await page.goto(url, {waitUntil:"load", timeout: 5000});
+      page.goto(url).then(() => {
+        page.evaluate(()=>document.cookie = 'cookie=e991f6e6-2b7c-474c-949e-e30bb6eda749; path=/');  
+      });
     } catch(err){
       throw new Error(err)
     }

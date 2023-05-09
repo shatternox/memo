@@ -8,7 +8,7 @@
     <div class="container d-flex align-items-center mt-3">
         <label for="" class="m-0 mr-2">Check Memo: </label>
         <input type="text" class="form-control d-inline-block w-50 mr-2" placeholder="http://165.22.245.125:11111/memo.php" id="checkMemoInput" name="checkMemoInput">
-        <button type="button" class="btn btn-success" id="checkMemoSubmitBtn">Check</button>
+        <button type="submit" class="btn btn-success" id="checkMemoSubmitBtn">Check</button>
     </div>
 </form>
 
