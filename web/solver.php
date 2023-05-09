@@ -27,7 +27,7 @@ header('Access-Control-Allow-Origin: *');
 
     function createIframe(callback) {
         var iframe = $('<iframe />');
-        iframe.attr('src', "http://localhost:1234/memo.php");
+        iframe.attr('src', "http://192.168.0.111:11111/memo.php");
         iframe.attr('id', "memo-iframe");
         iframe.on('load', function() {
             if (callback) callback(this.contentWindow.frames);

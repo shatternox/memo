@@ -5,3 +5,5 @@ Made for Infinity (Gunadarma) Web Exploitation Challenge
 XS-Leaks
 
 admin:HHNmJT9K*lvNvIa^0$1$lzDI
+
+HARUS SET DOMAIN DULU

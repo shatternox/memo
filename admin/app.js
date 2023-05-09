@@ -7,6 +7,7 @@ const port = 3000
 const cookie = {
     'name': 'cookie',
     'value': 'e991f6e6-2b7c-474c-949e-e30bb6eda749',
+    'domain':'192.168.0.111'
 }
 
 const sleep = (ms) => {
@@ -24,21 +25,17 @@ const monitorConsoleOutput = async (botData) => {
     });
 }
 
-app.get('/admin_check', async (req, res) => {
-
-    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+async function visit(url){
+    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox',  '--disable-web-security', '--disable-features=IsolateOrigins', '--disable-site-isolation-trials']});
     const page = await browser.newPage();
-
-    res.status(200)
-    res.end()
 
     monitorConsoleOutput(page)
 
     try {
-        await page.tracing.start({ path: `/tmp/${new Date()}-trace.json` });            
-      } catch (error) {
-          
-      }
+      await page.tracing.start({ path: `/tmp/${new Date()}-trace.json` });            
+    } catch (error) {
+      console.log(error)
+    }
 
     page.on('error', err => {
         console.error(`[#] Error: `, err);
@@ -59,21 +56,34 @@ app.get('/admin_check', async (req, res) => {
 
 
     // For Docker 172.12.47.14:80
-    const url = req.query.url
-
-    await page.goto(url);
-    await page.setCookie(cookie);
 
     try{
-      await page.goto(url, {waitUntil:"load"});
+        await page.setCookie(cookie);
+        await page.goto(url);
     } catch(err){
-      console.log(err);
+      throw new Error(err)
+    }
+    
+
+    try{
+      await page.goto(url, {waitUntil:"load", timeout: 5000});
+    } catch(err){
+      throw new Error(err)
     }
 
     await sleep(5000);
     await browser.close();
-    
+}
 
+app.get('/admin_check', async (req, res) => {
+    const url = req.query.url
+    try{
+        await visit(url);
+        res.status(200).send(`Success visiting URL: ${url}`);
+    }catch(e){
+      console.log(e)
+      res.status(500).send(`Error visiting URL: ${e.message}`);
+    }
 })
 
 

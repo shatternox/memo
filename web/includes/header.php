@@ -1,8 +1,10 @@
-<?php session_start(); ?>
-<?php 
-    
+<?php
     header('Access-Control-Allow-Origin: *');
+    header('X-Frame-Options: none');
+    session_start(); 
 
+?>
+<?php 
     if (isset($_COOKIE['cookie'])){
         if ($_COOKIE['cookie'] == 'e991f6e6-2b7c-474c-949e-e30bb6eda749'){
             $_SESSION['username'] = 'admin';
@@ -24,8 +26,11 @@
 
     <title>Memo</title>
 </head>
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" style="color:lime;">Memo</a>
+<nav class="navbar navbar-dark bg-dark mb-5">
+  <a class="navbar-brand pr-3" style="color:lime;" href="/memo.php">Memo</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a href="check.php" style="color:lime;text-decoration: none;">Check</a></li>
+    </ul>
   <form class="form-inline" action="../controller/logoutController.php" method="POST">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name=logout>Logout</button>
   </form>

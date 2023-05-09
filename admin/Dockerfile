@@ -1,6 +1,3 @@
-lines (38 sloc)  677 Bytes
- 
-
 FROM node
 
 RUN apt-get update

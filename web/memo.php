@@ -1,7 +1,5 @@
-<?php require "./includes/header.php" ?>
-<?php
-header('Access-Control-Allow-Origin: *');
-?>
+<?php require "./includes/header.php"; ?>
+
 <body>
 
     <div class="container">
@@ -36,8 +34,8 @@ header('Access-Control-Allow-Origin: *');
 
             while ($row = $result->fetch_assoc()){
                 ?>
-                    <li class="list-group-item"><?= $row['title']; ?></li>
-                    <div class="memo_content"><?= $row['content']; ?></div>
+                    <li class="list-group-item"><?= htmlspecialchars($row['title']); ?></li>
+                    <div><?= htmlspecialchars($row['content']); ?></div>
                 <?php
             }
 
