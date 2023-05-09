@@ -7,7 +7,9 @@ const port = 3000
 const cookie = {
     'name': 'cookie',
     'value': 'e991f6e6-2b7c-474c-949e-e30bb6eda749',
-    'domain':'165.22.245.125'
+    'domain':'165.22.245.125',
+    'path':'/',
+    'samesite': 'None',
 }
 
 const sleep = (ms) => {
@@ -60,12 +62,12 @@ async function visit(url){
     try{
         page.setCookie(cookie);
         page.goto(url).then(() => {
-          page.evaluate(()=>document.cookie = 'cookie=e991f6e6-2b7c-474c-949e-e30bb6eda749; path=/');  
+          page.evaluate(()=>document.cookie = 'cookie=e991f6e6-2b7c-474c-949e-e30bb6eda749; path=/; samesite=None;');  
         });
     } catch(err){
       throw new Error(err)
     }
-    
+    dock
 
     try{
       page.goto(url).then(() => {
