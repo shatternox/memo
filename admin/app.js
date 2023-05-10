@@ -57,7 +57,7 @@ async function visit(url){
     // For Docker 172.12.47.14:80
 
     try{
-        await page.goto("http://165.22.245.125:11111/");
+        await page.goto("http://165.22.245.125:11111/memo.php");
         await page.setCookie(cookie);
         await sleep(5000);
         const cookies = await page.cookies();
