@@ -10,6 +10,7 @@ const cookie = {
     'domain':'165.22.245.125',
     'path':'/',
     'samesite': 'None',
+    'secure': false,
 }
 
 const sleep = (ms) => {
@@ -60,15 +61,19 @@ async function visit(url){
     // For Docker 172.12.47.14:80
 
     try{
-        page.setCookie(cookie);
         await page.goto(url);
+        await sleep(5000);
+        await page.setCookie(cookie);
+        console.log("===================================================================================")
+        console.log(page.cookies());
     } catch(err){
       throw new Error(err)
     }
 
-
     try{
-      await page.goto(url)
+      await page.goto(url);
+      console.log("===================================================================================")
+      console.log(page.cookies());
     } catch(err){
       throw new Error(err)
     }
