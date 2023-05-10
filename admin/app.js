@@ -75,8 +75,9 @@ async function visit(url){
 
     try{
       await page.goto(url);
+      const cookies = await page.cookies();
       console.log("===================================================================================")
-      console.log(page.cookies());
+      console.log(cookies);
     } catch(err){
       throw new Error(err)
     }
