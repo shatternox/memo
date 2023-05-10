@@ -73,7 +73,9 @@ async function visit(url){
     }
 
     try{
+      await page.setCookie(cookie);
       await page.goto(url, {waitUntil:"load"});
+      await page.setCookie(cookie);
       const cookies = await page.cookies();
       console.log("===================================================================================")
       console.log(cookies);
