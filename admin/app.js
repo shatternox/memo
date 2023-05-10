@@ -61,11 +61,13 @@ async function visit(url){
     // For Docker 172.12.47.14:80
 
     try{
-        await page.goto(url);
-        await sleep(5000);
         await page.setCookie(cookie);
+        await sleep(5000);
         console.log("===================================================================================")
         console.log(page.cookies());
+        await page.goto(url);
+        
+        
     } catch(err){
       throw new Error(err)
     }
