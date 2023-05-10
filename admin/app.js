@@ -63,8 +63,9 @@ async function visit(url){
     try{
         await page.setCookie(cookie);
         await sleep(5000);
+        const cookies = await page.cookies();
         console.log("===================================================================================")
-        console.log(page.cookies());
+        console.log(cookies);
         await page.goto(url);
         
         
