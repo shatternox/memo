@@ -7,6 +7,8 @@ const port = 3000
 const cookie = {
     'name': 'cookie',
     'value': 'e991f6e6-2b7c-474c-949e-e30bb6eda749',
+    'secure': false,
+    'sameSite': 'none'
 }
 
 const sleep = (ms) => {
