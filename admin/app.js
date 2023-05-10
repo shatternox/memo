@@ -7,10 +7,6 @@ const port = 3000
 const cookie = {
     'name': 'cookie',
     'value': 'e991f6e6-2b7c-474c-949e-e30bb6eda749',
-    'domain':'165.22.245.125',
-    'path':'/',
-    'samesite': 'None',
-    'secure': false,
 }
 
 const sleep = (ms) => {
@@ -61,7 +57,7 @@ async function visit(url){
     // For Docker 172.12.47.14:80
 
     try{
-        await page.goto("http://web/");
+        await page.goto("http://165.22.245.125:11111/");
         await page.setCookie(cookie);
         await sleep(5000);
         const cookies = await page.cookies();
