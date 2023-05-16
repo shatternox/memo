@@ -29,6 +29,9 @@ const monitorConsoleOutput = async (botData) => {
 async function visit(url){
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox',  '--disable-web-security', '--disable-features=IsolateOrigins', '--disable-site-isolation-trials'],
+      executablePath: '/usr/bin/firefox-esr',
+      pipe: true,
+      dumpio: true,
       product: 'firefox'
     }
     );
