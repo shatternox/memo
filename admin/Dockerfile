@@ -40,5 +40,7 @@ COPY . .
 
 RUN npm install 
 
+RUN PUPPETEER_PRODUCT=firefox npm i puppeteer
+
 CMD ["node", "app.js"]
 
