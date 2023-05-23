@@ -9,6 +9,7 @@ const cookie = {
     'value': 'e991f6e6-2b7c-474c-949e-e30bb6eda749',
     'secure': false,
     'sameSite': 'none',
+    'domain': '165.22.245.125'
 }
 
 const sleep = (ms) => {
@@ -27,14 +28,7 @@ const monitorConsoleOutput = async (botData) => {
 }
 
 async function visit(url){
-    const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox',  '--disable-web-security', '--disable-features=IsolateOrigins', '--disable-site-isolation-trials'],
-      executablePath: '/usr/bin/firefox-esr',
-      pipe: true,
-      dumpio: true,
-      product: 'firefox'
-    }
-    );
+    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox',  '--disable-web-security', '--disable-features=IsolateOrigins', '--disable-site-isolation-trials']});
     const page = await browser.newPage();
 
     monitorConsoleOutput(page)
@@ -66,7 +60,7 @@ async function visit(url){
     // For Docker 172.12.47.14:80
 
     try{
-        await page.goto("http://54.254.34.140:11111/memo.php");
+        await page.goto("http://165.22.245.125:11111/memo.php");
         await page.setCookie(cookie);
         await sleep(5000);
         const cookies = await page.cookies();

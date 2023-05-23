@@ -32,15 +32,13 @@ RUN apt-get install -y \
     libxrender1 \
     libxss1 \
     libxtst6 \
-    xdg-utils \
-    firefox-esr
+    xdg-utils 
 
 WORKDIR /admin
 
 COPY . .
 
-RUN npm install puppeteer
-RUN npm install express
+RUN npm install 
 
 CMD ["node", "app.js"]
 
